@@ -56,8 +56,32 @@ def merge(left, right):
 
   return result
 
+def linearSearch(arr, targetVal):
+  for i in range(len(arr)):
+    if arr[i] == targetVal:
+      return i, arr[i]
+  return -1, None
+
+def binarySearch(arr, targetVal):
+   low = 0
+   high = len(arr) - 1
+
+   while low <= high:
+      mid = (low + high) // 2
+      if arr[mid] == targetVal:
+         return mid, arr[mid]
+      elif arr[mid] < targetVal:
+         low = mid + 1
+      else:
+         high = mid - 1
+
+   return -1, None
+    
+    
 radixsortedlist = radixSort(data)
 mergesortedlist = mergeSort(data)
+structuredData = radixsortedlist
+
 
 print("="*105)
 print("Radix Sort")
@@ -74,3 +98,30 @@ print(f"Sebelum di sort: {data}")
 print("")
 print(f"Sesudah di sort: {mergesortedlist}")
 print("="*105)
+
+print("")
+print("="*105)
+print("Searching Data")
+print("="*105)
+
+try:
+   target = int(input("Masukkan angka yang ingin anda cari disini: "))
+   print("-" * 50)
+
+   index_lin, val_lin = linearSearch(structuredData, target)
+   print("[Linear Search] => ", end="" )
+   if index_lin != -1:
+    print(f"Index: {index_lin}, Value: {val_lin}")
+   else:
+    print("Data not found!")
+
+   index_bin, val_bin = binarySearch(structuredData, target)
+   print("[Binary Search] => ", end="" )
+   if index_bin != -1:
+    print(f"Index: {index_bin}, Value: {val_bin}")
+   else:
+    print("Data not found!")
+
+except ValueError:
+   print("Input tidak valid! Harap masukkan sebuah angka!")
+print ("=" *105)
