@@ -56,10 +56,10 @@ def cari_terbesar(folder : dict) -> tuple:
             if size > max_size:
                 max_nama = file
                 max_size = size
-            elif isinstance (value, int):
-                if value > max_size:
-                    max_nama = nama
-                    max_size = value
+        elif isinstance (value, int):
+            if value > max_size:
+                max_nama = nama
+                max_size = value
         return (max_nama, max_size)
     
 def tampilkan_tree(folder: dict, nama: str = "root", level: int = 0):
@@ -73,4 +73,11 @@ def tampilkan_tree(folder: dict, nama: str = "root", level: int = 0):
             print(f"{indentasi}📁{key}")
             tampilkan_tree(value, nama=key, level=level + 1)
 
+hasil_ukuran = total_ukuran(struktur)
+hasil_hitung = hitung_file(struktur)
+nama_terbesar, ukuran_terbesar = cari_terbesar(struktur)
+
+print(f"Total ukuran file: {hasil_ukuran} KB")
+print(f"Total jumlah file: {hasil_hitung}")
+print(f"File terbesar: {nama_terbesar} ({ukuran_terbesar} KB)")
 tampilkan_tree(struktur)
